@@ -67,3 +67,22 @@ header_t *get_free_block(size_t size)
   }
   return NULL;
 }
+
+
+void free(void *block)
+{
+  header_t *header, *tmp; 
+  void *programbreak;
+
+  if (!block)
+    return;
+
+  pthread_mutex_lock(&global_malloc_lock);
+  header = (header_t*)block - 1; 
+  programbreak= sbrk(0);
+
+  if ((char*)block + header->s.size == programbreak){
+
+  }
+
+}
